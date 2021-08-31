@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public List<string> inventory;
+
     public CharacterController2D controller; //in Unity drag the CharacterController script into this slot
 
     public float runSpeed = 40f;
@@ -11,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+
+    void Start()
+    {
+        inventory = new List<string>(); //could spec gameObject instead of string, more data though
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,5 +49,20 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         //reset to prevent neverending jump
         jump = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Collectible"))
+        {
+            //collect the item
+            string itemType = collision.gameObject.GetComponent<Collectibles>().itemType;
+            Debug.Log("I have collected a " + itemType); //to test
+
+            //place collected item into list
+            inventory.Add(itemType);
+            Debug.Log("Numbers of items in inventory List " + inventory.Count); //to test
+            Destroy(collision.gameObject);
+        }
     }
 }
