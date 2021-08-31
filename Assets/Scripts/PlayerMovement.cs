@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -63,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
             inventory.Add(itemType);
             Debug.Log("Numbers of items in inventory List " + inventory.Count); //to test
             Destroy(collision.gameObject);
+        }
+
+        else if (collision.CompareTag("Next"))
+        {
+            //load next scene
+            //Moves to next scene/ level on completion tied to UnityEngine.SceneManagement
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
         }
     }
 }
