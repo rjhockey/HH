@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        inventory = new List<string>(); //could spec gameObject instead of string, more data though
+        inventory = new List<string>(); //could spec gameObject instead of string, but more data intensive
     }
 
     // Update is called once per frame
@@ -58,20 +58,29 @@ public class PlayerMovement : MonoBehaviour
         {
             //collect the item
             string itemType = collision.gameObject.GetComponent<Collectibles>().itemType;
-            Debug.Log("I have collected a " + itemType); //to test
+            //to test
+            Debug.Log("I have collected a " + itemType); 
 
             //place collected item into list
             inventory.Add(itemType);
-            Debug.Log("Numbers of items in inventory List " + inventory.Count); //to test
+            //to test
+            Debug.Log("Numbers of items in inventory List: " + inventory.Count); 
             Destroy(collision.gameObject);
         }
 
         else if (collision.CompareTag("Next"))
         {
-            //load next scene
-            //Moves to next scene/ level on completion tied to UnityEngine.SceneManagement
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+            //Moves to next scene/level on completion tied to UnityEngine.SceneManagement
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //moved to own function below
+            StartCoroutine(LoadNextScene());
         }
     }
+
+    public IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(0f); //use to delay start of next scene
+        //Moves to next scene/level on completion tied to UnityEngine.SceneManagement
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
+
