@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // collectibles & display
     public List<string> inventory;
 
-    public CharacterController2D controller; //in Unity drag the CharacterController script into this slot
+    public Text count;
+    public Text lives;
 
+    public int life = 0;
+
+    // player movement
+    public CharacterController2D controller; //in Unity drag the CharacterController script into this slot
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
@@ -17,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        inventory = new List<string>(); //could spec gameObject instead of string, but more data intensive
+        inventory = new List<string>(); //could spec gameObject instead of string, more data intensive
     }
 
     // Update is called once per frame
@@ -56,15 +63,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Collectible"))
         {
-            //collect the item
+            // collect the item
             string itemType = collision.gameObject.GetComponent<Collectibles>().itemType;
-            //to test
+            // to test
             Debug.Log("I have collected a " + itemType); 
 
-            //place collected item into list
+            // place collected item into list
             inventory.Add(itemType);
             //to test
-            Debug.Log("Numbers of items in inventory List: " + inventory.Count); 
+            Debug.Log("Numbers of items in inventory List: " + inventory.Count);
+
+            // send coin count to screen
+            count.text = ("Coins " + inventory.Count.ToString());
             Destroy(collision.gameObject);
         }
 
@@ -78,9 +88,9 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator LoadNextScene()
     {
-        yield return new WaitForSeconds(0f); //use to delay start of next scene
-        //Moves to next scene/level on completion tied to UnityEngine.SceneManagement
+        // use to delay start of next scene, 0 = no delay
+        yield return new WaitForSeconds(0f); 
+        // moves to next scene/level on completion tied to UnityEngine.SceneManagement
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
-
