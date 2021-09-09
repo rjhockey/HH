@@ -3577,6 +3577,36 @@ Transform:
   m_Father: {fileID: 65113336}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1532360816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1532360817}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1532360817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532360816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1862287293}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1534354166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4658,7 +4688,7 @@ MonoBehaviour:
   m_LookaheadTime: 0.3
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
-  m_XDamping: 1
+  m_XDamping: 5.3
   m_YDamping: 1
   m_ZDamping: 0
   m_TargetMovementOnly: 1
@@ -4668,7 +4698,7 @@ MonoBehaviour:
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
-  m_UnlimitedSoftZone: 0
+  m_UnlimitedSoftZone: 1
   m_SoftZoneWidth: 0.63
   m_SoftZoneHeight: 0.05
   m_BiasX: -0.00000009461055
@@ -4714,6 +4744,7 @@ GameObject:
   - component: {fileID: 1862287291}
   - component: {fileID: 1862287298}
   - component: {fileID: 1862287299}
+  - component: {fileID: 1862287300}
   m_Layer: 8
   m_Name: HH_StandIn
   m_TagString: Player
@@ -4733,7 +4764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce1f2c87cc1c41c18dc0730a51c335a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 650
+  m_JumpForce: 700
   m_CrouchSpeed: 0.359
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -4813,6 +4844,7 @@ Transform:
   m_Children:
   - {fileID: 140087459}
   - {fileID: 230011297}
+  - {fileID: 1532360817}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4931,6 +4963,20 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 2131339370}
+--- !u!114 &1862287300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862287290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f2135f6c2a04abc8a0a3dc2cfad928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1532360817}
+  bulletPrefab: {fileID: 2731595167689612210, guid: 3e1de9915eb64488bbe677011e9e545b, type: 3}
 --- !u!1 &1869769060
 GameObject:
   m_ObjectHideFlags: 0

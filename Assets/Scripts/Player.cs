@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     }
 
     // decreases life on healthbar
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
