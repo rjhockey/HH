@@ -8,6 +8,7 @@ TagManager:
   - Next
   - Life
   - Enemy
+  - BigBox
   layers:
   - Default
   - TransparentFX
