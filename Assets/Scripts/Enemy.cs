@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject enemy;
 
-    // Update is called once per frame
-    void Update()
+    void Start ()
     {
-        
+        GameObject tmp = Instantiate(enemy);
+        Debug.Log("Enemy created");
+        tmp.transform.position = new Vector2(20.0f, tmp.transform.position.y);
     }
 }
